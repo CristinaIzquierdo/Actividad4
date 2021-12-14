@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  db_mysql:
+    image: mysql
+    container_name: db_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: newspaper
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./db/mysql/data:/var/lib/mysql
+
+  db_mongo:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./db/mongo/data:/data/db
+
+  phpmyadmin:
+    image: phpmyadmin
+    links:
+      - db_mysql
+    environment:
+      PMA_HOST: db_mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80

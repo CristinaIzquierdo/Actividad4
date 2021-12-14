@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./partials/head'); %>
+</head>
+
+<body>
+    <%- include('./partials/nav'); %>
+        <main>
+            <div class="general-container">
+                <h1>Noticias del centro</h1>
+                <ul>
+                    <% noticias.map((noticia)=> { %>
+                        <li class="list-container">
+                            <div class="noticia-container">
+                                <p class="titulo-noticia">
+                                    Titulo: <%= noticia.titulo %>
+                                </p>
+                                <p>
+                                    Texto: <%= noticia.texto %>
+                                </p>
+                                <p>Periodistas: </p>
+                                <ul class="periodistas-list">
+                                    <% noticia.periodista.map((periodista)=> { %>
+                                        <li>
+                                            <p>
+                                                Id: <%= periodista.id %>
+                                            </p>
+                                            <p>
+                                                Nombre: <%= periodista.nombre %>
+                                            </p>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                                <p>Recursos: </p>
+                                <ul class="periodistas-list">
+                                    <% noticia.recurso.map((recurso)=> { %>
+                                        <li>
+                                            <p>
+                                                Id: <%= recurso %>
+                                            </p>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                            </div>
+                        </li>
+                        <% })%>
+                </ul>
+            </div>
+        </main>
+</body>
+
+</html>

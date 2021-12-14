@@ -1,0 +1,18 @@
+<nav>
+    <h1><a href="/noticias">Periódico CPIFPPiramide</a></h1>
+    <div class="links">
+        <a href="/noticias">Noticias</a>
+        <form onsubmit=sendFunction() id="form" class="form-periodista">
+            <input type="search" name="periodista" placeholder="Buscar id" class="input-buscar">
+            <input type="submit" value="Buscar periodista" class="buscar">
+        </form>
+        <script>
+            function sendFunction() {
+                let srcFinal = ' http://localhost:8080/noticias/' + document.getElementsByName('periodista')[0].value;
+                let form = document.getElementById('form');
+                form.method = 'GET';
+                form.action = srcFinal;
+            }
+        </script>
+    </div>
+</nav>
